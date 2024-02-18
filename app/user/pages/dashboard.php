@@ -29,41 +29,71 @@
     <!-- Main content -->
     <section class="content">
         <?php
-        date_default_timezone_set('Asia/Jakarta');
-        $jam = date("H:i");
+date_default_timezone_set('Asia/Jakarta');
+$jam = date("H:i");
 
-        // atur salam dengan IF
-        if ($jam > '05:30' && $jam < '10:00') {
-            $salam = 'Pagi';
-        } elseif ($jam >= '10:00' && $jam < '15:00') {
-            $salam = 'Siang';
-        } elseif ($jam < '18:00') {
-            $salam = 'Sore';
-        } else {
-            $salam = 'Malam';
-        }
-        ?>
+// atur salam dengan IF
+if ($jam > '05:30' && $jam < '10:00') {
+    $salam = 'Pagi';
+} elseif ($jam >= '10:00' && $jam < '15:00') {
+    $salam = 'Siang';
+} elseif ($jam < '18:00') {
+    $salam = 'Sore';
+} else {
+    $salam = 'Malam';
+}
+?>
         <?php
-        include "../../config/koneksi.php";
+include "../../config/koneksi.php";
 
-        $sql = mysqli_query($koneksi, "SELECT * FROM identitas");
-        $row1 = mysqli_fetch_assoc($sql);
-        ?>
+$sql = mysqli_query($koneksi, "SELECT * FROM identitas");
+$row1 = mysqli_fetch_assoc($sql);
+?>
         <div class="alert alert-secondary" style="color: #383d41; background-color: #e2e3e5; border-color: #d6d8db;">
-            Selamat <?= $salam; ?>, Selamat datang <b><?= $_SESSION['fullname']; ?></b> di <?= $row1['nama_app']; ?>.
+            Selamat <?=$salam;?>, Selamat datang <b><?=$_SESSION['fullname'];?></b> di <?=$row1['nama_app'];?>.
         </div>
         <!-- -->
         <?php
-        include "../../config/koneksi.php";
-        $query = mysqli_query($koneksi, "SELECT * FROM identitas");
-        $row = mysqli_fetch_assoc($query);
+include "../../config/koneksi.php";
+$query = mysqli_query($koneksi, "SELECT * FROM identitas");
+$row = mysqli_fetch_assoc($query);
 
-        ?>
+?>
 
-        <img src="../../assets/dist/img/icon-app.png" width="120px" height="120px" style="display: block; margin-left: auto; margin-right: auto; margin-top: 100px;">
+<div class="box-body table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Judul Buku</th>
+                                    <th>Pengarang</th>
+                                    <th>Penerbit</th>
 
-        <h1 class="text-center"><?= $row['nama_app']; ?></h1>
-        <p class="text-center">Alamat : <?= $row['alamat_app']; ?></p>
+                                    <th>Jumlah Buku</th>
+
+                                </tr>
+                            </thead>
+                            <?php
+include "../../config/koneksi.php";
+
+$no = 1;
+$query = mysqli_query($koneksi, "SELECT * FROM buku");
+while ($row = mysqli_fetch_assoc($query)) {
+    ?>
+                                <tbody>
+                                    <tr>
+                                        <td><?=$no++;?></td>
+                                        <td><?=$row['judul_buku'];?></td>
+                                        <td><?=$row['pengarang'];?></td>
+                                        <td><?=$row['penerbit_buku'];?></td>
+                                        <td><?=$row['j_buku_baik'];?></td>
+                                    </tr>
+                                </tbody>
+                            <?php
+}
+?>
+                        </table>
+                    </div>
     </section>
     <!-- /.content -->
 </div>

@@ -7,25 +7,25 @@
                 <img src="../../assets/dist/img/avatar01.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p><?= $_SESSION['fullname']; ?></p>
+                <p><?=$_SESSION['fullname'];?></p>
                 <?php
-                include "../../config/koneksi.php";
+include "../../config/koneksi.php";
 
-                $id = $_SESSION['id_user'];
+$id = $_SESSION['id_user'];
 
-                $query = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id'");
-                $row = mysqli_fetch_array($query);
-                ?>
+$query = mysqli_query($koneksi, "SELECT * FROM user WHERE id_user = '$id'");
+$row = mysqli_fetch_array($query);
+?>
 
                 <?php
 
-                if ($row['verif'] == "Iya") {
-                    echo "<a><i class='fa fa-check-circle text-info'></i> Akun Terverifikasi</a>";
-                } else {
-                    echo "<a><i class='fa fa-exclamation text-danger'></i> Tidak Diketahui </a>";
-                }
+if ($row['verif'] == "Iya") {
+    echo "<a><i class='fa fa-check-circle text-info'></i> Akun Terverifikasi</a>";
+} else {
+    echo "<a><i class='fa fa-exclamation text-danger'></i> Tidak Diketahui </a>";
+}
 
-                ?>
+?>
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -43,7 +43,7 @@
                 <ul class="treeview-menu">
                     <li><a href="anggota"><i class="fa fa-circle-o"></i> Data Anggota</a></li>
                     <li><a href="penerbit"><i class="fa fa-circle-o"></i> Data Penerbit</a></li>
-                    <li><a href="administrator"><i class="fa fa-circle-o"></i> Administrator</a></li>
+                    <!-- <li><a href="administrator"><i class="fa fa-circle-o"></i> Administrator</a></li> -->
                     <li><a href="data-peminjaman"><i class="fa fa-circle-o"></i> Data Peminjaman</a></li>
                 </ul>
             </li>
@@ -62,28 +62,28 @@
             </li>
             <li><a href="laporan"><i class="fa fa-book"></i> <span>Laporan Perpustakaan</span></a></li>
             <li class="header">LAIN LAIN</li>
-            <li><a href="identitas-app"><i class="fa fa-info"></i> <span>Identitas Applikasi</span></a></li>
+            <!-- <li><a href="identitas-app"><i class="fa fa-info"></i> <span>Identitas Applikasi</span></a></li> -->
             <li><a href="pesan"><i class="fa fa-envelope"></i> <span>Pesan</span>
                     <span class="pull-right-container" id="jumlahPesan">
                         <?php
-                        include "../../config/koneksi.php";
+include "../../config/koneksi.php";
 
-                        $nama_saya = $_SESSION['fullname'];
-                        $default = "Belum dibaca";
-                        $query_pesan  = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
-                        $jumlah_pesan = mysqli_num_rows($query_pesan);
+$nama_saya = $_SESSION['fullname'];
+$default = "Belum dibaca";
+$query_pesan = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
+$jumlah_pesan = mysqli_num_rows($query_pesan);
 
-                        $nama_saya = $_SESSION['fullname'];
-                        $default = "Belum dibaca";
-                        $query_pesan  = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
-                        $row_pesan = mysqli_fetch_array($query_pesan);
+$nama_saya = $_SESSION['fullname'];
+$default = "Belum dibaca";
+$query_pesan = mysqli_query($koneksi, "SELECT * FROM pesan WHERE penerima = '$nama_saya' AND status = '$default'");
+$row_pesan = mysqli_fetch_array($query_pesan);
 
-                        if ($jumlah_pesan == null) {
-                            // Hilangkan badge pesan
-                        } else {
-                            echo "<span class='label label-danger pull-right'>" . $jumlah_pesan . "</span>";
-                        }
-                        ?>
+if ($jumlah_pesan == null) {
+    // Hilangkan badge pesan
+} else {
+    echo "<span class='label label-danger pull-right'>" . $jumlah_pesan . "</span>";
+}
+?>
                     </span>
                 </a></li>
             <li class="header">LANJUTAN</li>
