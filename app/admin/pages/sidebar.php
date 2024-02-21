@@ -31,7 +31,7 @@ if ($row['verif'] == "Iya") {
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN MENU</li>
-            <li><a href="dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="dashboard"><i class="fa fa-home"></i> <span>Halaman Utama</span></a></li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i>
